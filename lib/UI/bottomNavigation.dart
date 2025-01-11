@@ -26,6 +26,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
           BottomNavigationBarItem(icon: Icon(Icons.explore), label: "exploar"),
           BottomNavigationBarItem(
               icon: Icon(Icons.settings), label: "settings"),
+       
+       
+       
+       
         ],
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,

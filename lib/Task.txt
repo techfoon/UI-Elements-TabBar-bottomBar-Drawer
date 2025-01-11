@@ -1,0 +1,4 @@
+bottom navigation bar with Noze ko(floating acction button ko ko mid me kaise use kereng)
+ and circal also navigation
+
+hint bottomAppbar
