@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_elements/UI/pages/exploar.dart';
+import 'package:flutter_ui_elements/UI/pages/home.dart';
+import 'package:flutter_ui_elements/UI/pages/settings.dart';
+import 'package:flutter_ui_elements/UI/pages/task.dart';
+import 'dart:developer';
 
 void main() {
-  runApp(const MainApp());
+  runApp(MainApp());
 }
 
 class MainApp extends StatelessWidget {
@@ -9,11 +14,43 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+    List<Widget> AllTab = [Home(), Task(), Settings(), Exploar()];
+    return MaterialApp(
+      home: DefaultTabController(
+        length: AllTab.length,
+        child: Scaffold(
+            appBar: AppBar(
+              title: Text("abc"),
+              bottom: TabBar(
+                
+                
+             //   isScrollable: true,
+                indicatorColor: Colors.pink, tabs: [
+                  
+                Tab(
+                  child: Row(
+                    children: [Icon(Icons.home), Text("Home")],
+                  ),
+                ),
+                Tab(
+                  child: Row(
+                    children: [Icon(Icons.task), Text("Task")],
+                  ),
+                ),
+                Tab(
+                  child: Row(
+                    children: [Icon(Icons.explore), Text("Expl")],
+                  ),
+                ),
+                Tab(
+                  child: Row(
+                    children: [Icon(Icons.settings), Text("Setting")],
+                  ),
+                ),
+              ]),
+            ),
+            body:
+                TabBarView(children: [Home(), Task(), Settings(), Exploar()])),
       ),
     );
   }
