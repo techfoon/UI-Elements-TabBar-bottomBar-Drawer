@@ -3,55 +3,65 @@ import 'package:flutter_ui_elements/UI/pages/exploar.dart';
 import 'package:flutter_ui_elements/UI/pages/home.dart';
 import 'package:flutter_ui_elements/UI/pages/settings.dart';
 import 'package:flutter_ui_elements/UI/pages/task.dart';
-import 'dart:developer';
 
 void main() {
   runApp(MainApp());
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends StatefulWidget {
   const MainApp({super.key});
 
   @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> with SingleTickerProviderStateMixin {
+  TabController? myTabContro;
+
+  void initState() {
+    super.initState();
+    myTabContro = TabController(length: 4, vsync: this); // not working
+
+    myTabContro!.index = 2;  // we can set index of our tab in myTabController
+    
+  }
+
+  List<Widget> AllTab = [Home(), Task(), Settings(), Exploar()];
+  @override
   Widget build(BuildContext context) {
-    List<Widget> AllTab = [Home(), Task(), Settings(), Exploar()];
     return MaterialApp(
-      home: DefaultTabController(
-        length: AllTab.length,
-        child: Scaffold(
-            appBar: AppBar(
-              title: Text("abc"),
-              bottom: TabBar(
-                
-                
-             //   isScrollable: true,
-                indicatorColor: Colors.pink, tabs: [
-                  
-                Tab(
-                  child: Row(
-                    children: [Icon(Icons.home), Text("Home")],
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text("abc"),
+            bottom: TabBar(
+                controller: myTabContro,
+
+                //   isScrollable: true,
+                indicatorColor: Colors.pink,
+                tabs: [
+                  Tab(
+                    child: Row(
+                      children: [Icon(Icons.home), Text("Home")],
+                    ),
                   ),
-                ),
-                Tab(
-                  child: Row(
-                    children: [Icon(Icons.task), Text("Task")],
+                  Tab(
+                    child: Row(
+                      children: [Icon(Icons.task), Text("Task")],
+                    ),
                   ),
-                ),
-                Tab(
-                  child: Row(
-                    children: [Icon(Icons.explore), Text("Expl")],
+                  Tab(
+                    child: Row(
+                      children: [Icon(Icons.explore), Text("Expl")],
+                    ),
                   ),
-                ),
-                Tab(
-                  child: Row(
-                    children: [Icon(Icons.settings), Text("Setting")],
+                  Tab(
+                    child: Row(
+                      children: [Icon(Icons.settings), Text("Setting")],
+                    ),
                   ),
-                ),
-              ]),
-            ),
-            body:
-                TabBarView(children: [Home(), Task(), Settings(), Exploar()])),
-      ),
+                ]),
+          ),
+          body: TabBarView(controller: myTabContro, children: AllTab)),
     );
   }
 }
