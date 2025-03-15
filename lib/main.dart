@@ -1,67 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ui_elements/UI/pages/exploar.dart';
-import 'package:flutter_ui_elements/UI/pages/home.dart';
-import 'package:flutter_ui_elements/UI/pages/settings.dart';
-import 'package:flutter_ui_elements/UI/pages/task.dart';
+import 'package:flutter_ui_elements/UI/mydrawer.dart';
+
 
 void main() {
   runApp(MainApp());
 }
 
-class MainApp extends StatefulWidget {
-  const MainApp({super.key});
+
+class MainApp extends StatelessWidget {
+const MainApp({ Key? key }) : super(key: key);
 
   @override
-  State<MainApp> createState() => _MainAppState();
-}
-
-class _MainAppState extends State<MainApp> with SingleTickerProviderStateMixin {
-  TabController? myTabContro;
-
-  void initState() {
-    super.initState();
-    myTabContro = TabController(length: 4, vsync: this); // not working
-
-    myTabContro!.index = 2;  // we can set index of our tab in myTabController
-    
-  }
-
-  List<Widget> AllTab = [Home(), Task(), Settings(), Exploar()];
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return MaterialApp(
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text("abc"),
-            bottom: TabBar(
-                controller: myTabContro,
 
-                //   isScrollable: true,
-                indicatorColor: Colors.pink,
-                tabs: [
-                  Tab(
-                    child: Row(
-                      children: [Icon(Icons.home), Text("Home")],
-                    ),
-                  ),
-                  Tab(
-                    child: Row(
-                      children: [Icon(Icons.task), Text("Task")],
-                    ),
-                  ),
-                  Tab(
-                    child: Row(
-                      children: [Icon(Icons.explore), Text("Expl")],
-                    ),
-                  ),
-                  Tab(
-                    child: Row(
-                      children: [Icon(Icons.settings), Text("Setting")],
-                    ),
-                  ),
-                ]),
-          ),
-          body: TabBarView(controller: myTabContro, children: AllTab)),
+      home: Mydrawer() ,
     );
   }
 }
